@@ -20,7 +20,7 @@ let package = Package(
     targets: [
         .target(
             name: "SwiftTasksVision",
-            dependencies: ["MediaPipeCommonGraphLibraries", "MediaPipeTasksVision"],
+            dependencies: ["MediaPipeCommonGraphLibraries", "MediaPipeTasksVision", "MediaPipeTasksCommon"],
             linkerSettings: [
                 .unsafeFlags(["-ObjC"])
             ]
