@@ -18,17 +18,12 @@ let package = Package(
         )
     ],
     targets: [
-        // -ObjC linker flag intentionally OMITTED. The upstream package applies
-        // it, which forces all Obj-C classes from the binary frameworks to also
-        // be statically linked into the consuming app's main binary — but
-        // because these are dynamic XCFrameworks that get embedded in the
-        // app's Frameworks/ dir, the same classes end up in two places
-        // ("Class X is implemented in both ..." runtime warnings). For dynamic
-        // XCFramework binary targets the flag is unnecessary; categories
-        // resolve through the dynamic load.
         .target(
             name: "SwiftTasksVision",
-            dependencies: ["MediaPipeCommonGraphLibraries", "MediaPipeTasksVision", "MediaPipeTasksCommon"]
+            dependencies: ["MediaPipeCommonGraphLibraries", "MediaPipeTasksVision", "MediaPipeTasksCommon"],
+            linkerSettings: [
+                .unsafeFlags(["-ObjC"])
+            ]
         ),
         .binaryTarget(
             name: "MediaPipeTasksVision",
